@@ -7,6 +7,7 @@ import RPi.GPIO as GPIO
 import threading
 import csv
 
+
 # Set GPIO mode
 GPIO.setmode(GPIO.BCM)
 
