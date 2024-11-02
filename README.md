@@ -16,3 +16,6 @@ pip install RPi.GPIO
 ```
 python main.py
 ```
+
+### Screenshot
+<img width="889" alt="Screenshot 2024-11-02 at 12 24 51" src="https://github.com/user-attachments/assets/a967e2d0-9f49-403f-8029-b4f6e1b7be21">
