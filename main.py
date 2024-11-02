@@ -19,8 +19,9 @@ ECHO = 24
 GPIO.setup(TRIG, GPIO.OUT)
 GPIO.setup(ECHO, GPIO.IN)
 
-
+# Create class for Vein Viewer App
 class CameraApp:
+    # Function for main UI
     def __init__(self, master):
         self.master = master
         self.master.title("Vein Camera App")
@@ -47,6 +48,7 @@ class CameraApp:
         # Initialize distance variable
         self.distance = None
 
+    # Function for stream video
     def update_video(self):
         # Capture frame-by-frame
         frame = self.picam2.capture_array()  # Capture frame
@@ -61,6 +63,7 @@ class CameraApp:
 
         self.master.after(10, self.update_video)  # Repeat every 10 ms
 
+    # Function for ultrasonic sensor
     def measure_distance(self):
         # This method now runs in a separate thread
         GPIO.output(TRIG, True)
@@ -83,12 +86,14 @@ class CameraApp:
         # Update the GUI with the distance
         self.master.after(0, self.update_distance_display)
 
+    # Function for display distance in UI
     def update_distance_display(self):
         # Display the distance on the canvas
         if self.distance is not None:
             self.canvas.create_text(10, 10, anchor=tk.NW, text=f"Distance: {self.distance} cm", fill="white",
                                     font=("Arial", 16))
 
+    # Function for caption image
     def capture(self):
         # Capture an image
         frame = self.picam2.capture_array()  # Capture frame
@@ -104,6 +109,7 @@ class CameraApp:
             writer.writerow([namefile, self.distance])
             print(f"Saved to CSV: {time.strftime('%Y%m%d_%H%M%S')}, Distance: {self.distance} cm")
 
+    # Function for close camera
     def close(self):
         self.picam2.stop()
         GPIO.cleanup()  # Clean up GPIO
